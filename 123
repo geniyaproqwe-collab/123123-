@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LumeXShop - Магазин сетов Nevertime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #cccccc;
+            font-size: 14px;
+        }
+        
+        .item-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .item-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        
+        .item-price {
+            background: linear-gradient(45deg, #ffd700, #ff6b00);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: black;
+            font-size: 14px;
+        }
+        
+        .item-description {
+            color: #cccccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .item-content {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00ff88;
+        }
+        
+        .content-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .content-item:before {
+            content: "•";
+            color: #00ff88;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        
+        .buy-button {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            color: black;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 12px;
+            padding: 20px;
+        }
+        
+        .discount-badge {
+            background: linear-gradient(45deg, #ff0066, #ff3300);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .telegram-button {
+            background: #0088cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎄 LumeXShop</div>
+            <div class="subtitle">Официальный магазин сетов Nevertime</div>
+        </div>
+
+        <!-- Сет Дед Мороз -->
+        <div class="item-card">
+            <div class="item-header">
+                <div class="item-name">🎅 Сет "Дед Мороз"</div>
+                <div class="item-price">299 ₽</div>
+            </div>
+            <div class="item-description">Эксклюзивный новогодний сет с уникальными предметами</div>
+            <div class="item-content">
+                <div class="content-item">4 Пахлавы</div>
+                <div class="content-item">3 Золотых яблока</div>
+                <div class="content-item">64 Снежка</div>
+                <div class="content-item">Новогодний плащ</div>
+                <div class="content-item">Посох Деда Мороза</div>
+                <div class="content-item">5 Алмазов</div>
+            </div>
+            <button class="buy-button" onclick="buyItem('Дед Мороз')">🎁 Купить сейчас</button>
+            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
+        </div>
+
+        <!-- Сет Электроник -->
+        <div class="item-card">
+            <div class="item-header">
+                <div class="item-name">⚡ Сет "Электроник"</div>
+                <div class="item-price">199 ₽</div>
+            </div>
+            <div class="item-description">Мощный технологический сет для продвинутых игроков</div>
+            <div class="item-content">
+                <div class="content-item">3 Красных камня</div>
+                <div class="content-item">64 Факела</div>
+                <div class="content-item">Электронный меч</div>
+                <div class="content-item">Киборг-броня</div>
+                <div class="content-item">16 Заряженных зелий</div>
+            </div>
+            <button class="buy-button" onclick="buyItem('Электроник')">⚡ Купить сейчас</button>
+            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
+        </div>
+
+        <!-- Сет Воин -->
+        <div class="item-card">
+            <div class="item-header">
+                <div class="item-name">⚔️ Сет "Воин"</div>
+                <div class="item-price">149 ₽ <span class="discount-badge">-20%</span></div>
+            </div>
+            <div class="item-description">Боевой сет для настоящих воинов сервера</div>
+            <div class="item-content">
+                <div class="content-item">Алмазный меч</div>
+                <div class="content-item">Железная броня</div>
+                <div class="content-item">32 стрелы</div>
+                <div class="content-item">3 зелья лечения</div>
+                <div class="content-item">Щит воина</div>
+            </div>
+            <button class="buy-button" onclick="buyItem('Воин')">⚔️ Купить сейчас</button>
+            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
+        </div>
+
+        <div class="footer">
+            © 2024 LumeXShop • Nevertime Server<br>
+            Поддержка: @lumesupport
+        </div>
+    </div>
+
+    <script>
+        function buyItem(itemName) {
+            // Открываем Telegram для связи с поддержкой
+            window.open('https://t.me/lumesupport?text=Хочу купить сет ' + encodeURIComponent(itemName), '_blank');
+        }
+        
+        // Плавное появление карточек
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.item-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
