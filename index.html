@@ -5,28 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LumeXShop - NeverTime</title>
     <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             background: #000000;
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(40, 40, 40, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(60, 60, 60, 0.6) 0%, transparent 50%),
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15L60 40L85 40L65 55L75 80L50 65L25 80L35 55L15 40L40 40Z' fill='white' opacity='0.1'/%3E%3C/svg%3E");
+                radial-gradient(circle at 80% 70%, rgba(60, 60, 60, 0.6) 0%, transparent 50%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             min-height: 100vh;
             padding: 20px;
         }
         
-        .container { 
-            max-width: 400px; 
-            margin: 0 auto; 
-        }
+        .container { max-width: 400px; margin: 0 auto; }
         
         .header {
             text-align: center;
@@ -35,7 +27,6 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
         }
         
         .logo {
@@ -48,7 +39,6 @@
         .subtitle {
             color: #cccccc;
             font-size: 14px;
-            opacity: 0.8;
         }
         
         .item-card {
@@ -57,12 +47,6 @@
             padding: 20px;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .item-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .item-header {
@@ -73,16 +57,14 @@
         }
         
         .item-image {
-            width: 80px;  /* УВЕЛИЧЕНО С 60px */
-            height: 80px; /* УВЕЛИЧЕНО С 60px */
+            width: 100px;
+            height: 100px;
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
-        .item-info {
-            flex: 1;
-        }
+        .item-info { flex: 1; }
         
         .item-name {
             font-size: 18px;
@@ -110,6 +92,11 @@
         .price-tag.stars {
             background: linear-gradient(45deg, #ffd700, #ff6b00);
             color: black;
+        }
+        
+        .price-tag.sapphire {
+            background: linear-gradient(45deg, #0077ff, #00ccff);
+            color: white;
         }
         
         .item-content {
@@ -157,14 +144,75 @@
             cursor: pointer;
             width: 100%;
             font-size: 15px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 10px;
         }
         
-        .buy-button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        .currency-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 90%;
+            max-width: 350px;
+        }
+        
+        .modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+        
+        .currency-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .currency-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .currency-name {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .currency-price {
+            color: #cccccc;
+            font-size: 14px;
+        }
+        
+        .close-modal {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
         }
         
         .footer {
@@ -173,7 +221,16 @@
             color: #888;
             font-size: 12px;
             padding: 20px;
-            opacity: 0.7;
+        }
+        
+        .sapphire-count {
+            background: linear-gradient(45deg, #0077ff, #00ccff);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -182,6 +239,10 @@
         <div class="header">
             <div class="logo">⚡ LumeXShop</div>
             <div class="subtitle">NeverTime Shop • 2025</div>
+        </div>
+
+        <div class="sapphire-count">
+            💎 Ваши сапфиры: <span id="sapphireCount">0</span>
         </div>
 
         <!-- Сет Заряженный -->
@@ -194,6 +255,7 @@
                         <span class="price-tag">500 тнг</span>
                         <span class="price-tag stars">65 ⭐</span>
                         <span class="price-tag">80 руб</span>
+                        <span class="price-tag sapphire">750 💎</span>
                     </div>
                 </div>
             </div>
@@ -215,7 +277,7 @@
                     <div class="content-item">64 хорусов</div>
                 </div>
             </div>
-            <button class="buy-button" onclick="buyItem('заряженный')">⚡ Купить сейчас</button>
+            <button class="buy-button" onclick="showCurrencyModal('заряженный')">⚡ Купить сейчас</button>
         </div>
 
         <!-- Сет Супер Заряд -->
@@ -228,6 +290,7 @@
                         <span class="price-tag">800 тнг</span>
                         <span class="price-tag stars">100 ⭐</span>
                         <span class="price-tag">120 руб</span>
+                        <span class="price-tag sapphire">1200 💎</span>
                     </div>
                 </div>
             </div>
@@ -250,7 +313,7 @@
                     <div class="content-item">64 хоруса</div>
                 </div>
             </div>
-            <button class="buy-button" onclick="buyItem('супер-заряд')">💥 Купить сейчас</button>
+            <button class="buy-button" onclick="showCurrencyModal('супер-заряд')">💥 Купить сейчас</button>
         </div>
 
         <div class="footer">
@@ -259,32 +322,94 @@
         </div>
     </div>
 
+    <!-- Модальное окно выбора валюты -->
+    <div class="currency-modal" id="currencyModal">
+        <div class="modal-content">
+            <div class="modal-title">Выберите способ оплаты</div>
+            
+            <div class="currency-option" onclick="selectCurrency('тенге')">
+                <div class="currency-name">🇰🇿 Тенге</div>
+                <div class="currency-price" id="tengePrice"></div>
+            </div>
+            
+            <div class="currency-option" onclick="selectCurrency('звезды')">
+                <div class="currency-name">⭐ Звезды</div>
+                <div class="currency-price" id="starsPrice"></div>
+            </div>
+            
+            <div class="currency-option" onclick="selectCurrency('рубли')">
+                <div class="currency-name">🇷🇺 Рубли</div>
+                <div class="currency-price" id="rubPrice"></div>
+            </div>
+            
+            <div class="currency-option" onclick="selectCurrency('сапфиры')">
+                <div class="currency-name">💎 Сапфиры</div>
+                <div class="currency-price" id="sapphirePrice"></div>
+            </div>
+            
+            <button class="close-modal" onclick="closeCurrencyModal()">Отмена</button>
+        </div>
+    </div>
+
     <script>
-        function buyItem(itemName) {
+        let currentItem = '';
+        const itemPrices = {
+            'заряженный': {
+                'тенге': '500 тнг',
+                'звезды': '65 ⭐', 
+                'рубли': '80 руб',
+                'сапфиры': '750 💎'
+            },
+            'супер-заряд': {
+                'тенге': '800 тнг',
+                'звезды': '100 ⭐',
+                'рубли': '120 руб', 
+                'сапфиры': '1200 💎'
+            }
+        };
+
+        function showCurrencyModal(itemName) {
+            currentItem = itemName;
+            const prices = itemPrices[itemName];
+            
+            document.getElementById('tengePrice').textContent = prices['тенге'];
+            document.getElementById('starsPrice').textContent = prices['звезды'];
+            document.getElementById('rubPrice').textContent = prices['рубли'];
+            document.getElementById('sapphirePrice').textContent = prices['сапфиры'];
+            
+            document.getElementById('currencyModal').style.display = 'block';
+        }
+
+        function closeCurrencyModal() {
+            document.getElementById('currencyModal').style.display = 'none';
+        }
+
+        function selectCurrency(currency) {
+            const itemName = currentItem;
+            const price = itemPrices[itemName][currency];
+            
             let message = '';
-            if (itemName === 'супер-заряд') {
-                message = 'Здравствуйте! Я хочу купить сет Супер-Заряд';
+            if (currency === 'сапфиры') {
+                message = `Здравствуйте! Я хочу купить сет ${formatItemName(itemName)} за ${price}`;
             } else {
-                message = 'Здравствуйте! Я хочу купить сет Заряженный';
+                message = `Здравствуйте! Я хочу купить сет ${formatItemName(itemName)} за ${price} (${currency})`;
             }
             
-            const telegramUrl = `https://t.me/gachomac?text=${encodeURIComponent(message)}`;
-            window.open(telegramUrl, '_blank');
+            window.open(`https://t.me/gachomac?text=${encodeURIComponent(message)}`, '_blank');
+            closeCurrencyModal();
         }
-        
-        // Плавное появление карточек
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.item-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.transition = 'all 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
-        });
+
+        function formatItemName(itemName) {
+            return itemName === 'супер-заряд' ? 'Супер-Заряд' : 'Заряженный';
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('currencyModal');
+            if (event.target === modal) {
+                closeCurrencyModal();
+            }
+        }
     </script>
 </body>
 </html>
