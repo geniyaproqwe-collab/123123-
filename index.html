@@ -94,11 +94,6 @@
             color: black;
         }
         
-        .price-tag.sapphire {
-            background: linear-gradient(45deg, #0077ff, #00ccff);
-            color: white;
-        }
-        
         .item-content {
             background: rgba(0, 0, 0, 0.3);
             padding: 15px;
@@ -222,16 +217,6 @@
             font-size: 12px;
             padding: 20px;
         }
-        
-        .sapphire-count {
-            background: linear-gradient(45deg, #0077ff, #00ccff);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
     </style>
 </head>
 <body>
@@ -239,10 +224,6 @@
         <div class="header">
             <div class="logo">⚡ LumeXShop</div>
             <div class="subtitle">NeverTime Shop • 2025</div>
-        </div>
-
-        <div class="sapphire-count">
-            💎 Ваши сапфиры: <span id="sapphireCount">0</span>
         </div>
 
         <!-- Сет Заряженный -->
@@ -255,7 +236,6 @@
                         <span class="price-tag">500 тнг</span>
                         <span class="price-tag stars">65 ⭐</span>
                         <span class="price-tag">80 руб</span>
-                        <span class="price-tag sapphire">750 💎</span>
                     </div>
                 </div>
             </div>
@@ -290,7 +270,6 @@
                         <span class="price-tag">800 тнг</span>
                         <span class="price-tag stars">100 ⭐</span>
                         <span class="price-tag">120 руб</span>
-                        <span class="price-tag sapphire">1200 💎</span>
                     </div>
                 </div>
             </div>
@@ -342,11 +321,6 @@
                 <div class="currency-price" id="rubPrice"></div>
             </div>
             
-            <div class="currency-option" onclick="selectCurrency('сапфиры')">
-                <div class="currency-name">💎 Сапфиры</div>
-                <div class="currency-price" id="sapphirePrice"></div>
-            </div>
-            
             <button class="close-modal" onclick="closeCurrencyModal()">Отмена</button>
         </div>
     </div>
@@ -357,14 +331,12 @@
             'заряженный': {
                 'тенге': '500 тнг',
                 'звезды': '65 ⭐', 
-                'рубли': '80 руб',
-                'сапфиры': '750 💎'
+                'рубли': '80 руб'
             },
             'супер-заряд': {
                 'тенге': '800 тнг',
                 'звезды': '100 ⭐',
-                'рубли': '120 руб', 
-                'сапфиры': '1200 💎'
+                'рубли': '120 руб'
             }
         };
 
@@ -375,7 +347,6 @@
             document.getElementById('tengePrice').textContent = prices['тенге'];
             document.getElementById('starsPrice').textContent = prices['звезды'];
             document.getElementById('rubPrice').textContent = prices['рубли'];
-            document.getElementById('sapphirePrice').textContent = prices['сапфиры'];
             
             document.getElementById('currencyModal').style.display = 'block';
         }
@@ -388,12 +359,7 @@
             const itemName = currentItem;
             const price = itemPrices[itemName][currency];
             
-            let message = '';
-            if (currency === 'сапфиры') {
-                message = `Здравствуйте! Я хочу купить сет ${formatItemName(itemName)} за ${price}`;
-            } else {
-                message = `Здравствуйте! Я хочу купить сет ${formatItemName(itemName)} за ${price} (${currency})`;
-            }
+            const message = `Здравствуйте! Я хочу купить сет ${formatItemName(itemName)} за ${price} (${currency})`;
             
             window.open(`https://t.me/gachomac?text=${encodeURIComponent(message)}`, '_blank');
             closeCurrencyModal();
