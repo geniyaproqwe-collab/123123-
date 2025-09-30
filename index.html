@@ -3,93 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LumeXShop - Магазин сетов Nevertime</title>
+    <title>LumeXShop - NeverTime</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
         
         body {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            background: #000000;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(40, 40, 40, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(60, 60, 60, 0.6) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15L60 40L85 40L65 55L75 80L50 65L25 80L35 55L15 40L40 40Z' fill='white' opacity='0.1'/%3E%3C/svg%3E");
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             min-height: 100vh;
             padding: 20px;
         }
         
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
+        .container { 
+            max-width: 400px; 
+            margin: 0 auto; 
         }
         
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            color: #ffffff;
+            margin-bottom: 8px;
         }
         
         .subtitle {
             color: #cccccc;
             font-size: 14px;
+            opacity: 0.8;
         }
         
         .item-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
         
         .item-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .item-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            gap: 15px;
+        }
+        
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .item-info {
+            flex: 1;
         }
         
         .item-name {
             font-size: 18px;
             font-weight: bold;
-            color: #00ff88;
+            color: #ffffff;
+            margin-bottom: 5px;
         }
         
         .item-price {
-            background: linear-gradient(45deg, #ffd700, #ff6b00);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: black;
-            font-size: 14px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
-        .item-description {
-            color: #cccccc;
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.4;
+        .price-tag {
+            background: linear-gradient(45deg, #333333, #555555);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .price-tag.stars {
+            background: linear-gradient(45deg, #ffd700, #ff6b00);
+            color: black;
         }
         
         .item-content {
@@ -97,41 +117,54 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
-            border-left: 4px solid #00ff88;
+            border-left: 3px solid #ffffff;
+        }
+        
+        .content-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .content-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 12px;
+            color: #cccccc;
         }
         
         .content-item {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            font-size: 14px;
         }
         
         .content-item:before {
             content: "•";
-            color: #00ff88;
-            margin-right: 8px;
+            color: #ffffff;
+            margin-right: 6px;
             font-weight: bold;
         }
         
         .buy-button {
-            background: linear-gradient(45deg, #00ff88, #00ccff);
-            color: black;
+            background: linear-gradient(45deg, #ffffff, #e0e0e0);
+            color: #000000;
             border: none;
-            padding: 15px 25px;
-            border-radius: 25px;
+            padding: 14px 20px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            font-size: 16px;
+            font-size: 15px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .buy-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
         
         .footer {
@@ -140,105 +173,103 @@
             color: #888;
             font-size: 12px;
             padding: 20px;
-        }
-        
-        .discount-badge {
-            background: linear-gradient(45deg, #ff0066, #ff3300);
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        
-        .telegram-button {
-            background: #0088cc;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            text-decoration: none;
-            display: block;
-            text-align: center;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🎄 LumeXShop</div>
-            <div class="subtitle">Официальный магазин сетов Nevertime</div>
+            <div class="logo">⚡ LumeXShop</div>
+            <div class="subtitle">NeverTime Shop • 2025</div>
         </div>
 
-        <!-- Сет Дед Мороз -->
+        <!-- Сет Заряженный -->
         <div class="item-card">
             <div class="item-header">
-                <div class="item-name">🎅 Сет "Дед Мороз"</div>
-                <div class="item-price">299 ₽</div>
+                <img src="https://i.postimg.cc/Y0S2qqQd/123123.png" alt="Заряженный сет" class="item-image">
+                <div class="item-info">
+                    <div class="item-name">⚡ Сет Заряженный</div>
+                    <div class="item-price">
+                        <span class="price-tag">500 тнг</span>
+                        <span class="price-tag stars">65 ⭐</span>
+                        <span class="price-tag">80 руб</span>
+                    </div>
+                </div>
             </div>
-            <div class="item-description">Эксклюзивный новогодний сет с уникальными предметами</div>
             <div class="item-content">
-                <div class="content-item">4 Пахлавы</div>
-                <div class="content-item">3 Золотых яблока</div>
-                <div class="content-item">64 Снежка</div>
-                <div class="content-item">Новогодний плащ</div>
-                <div class="content-item">Посох Деда Мороза</div>
-                <div class="content-item">5 Алмазов</div>
+                <div class="content-title">Сет содержит:</div>
+                <div class="content-items">
+                    <div class="content-item">Сет влатселина/безшиповка</div>
+                    <div class="content-item">Сфера Виверны</div>
+                    <div class="content-item">Меч Властелина</div>
+                    <div class="content-item">64 золотой моркови</div>
+                    <div class="content-item">24 золотых яблок</div>
+                    <div class="content-item">12 чарок</div>
+                    <div class="content-item">16 перов</div>
+                    <div class="content-item">7 стаков опыта</div>
+                    <div class="content-item">7 тотемов</div>
+                    <div class="content-item">Стак силок</div>
+                    <div class="content-item">Стак скорок</div>
+                    <div class="content-item">16 пластов</div>
+                    <div class="content-item">64 хорусов</div>
+                </div>
             </div>
-            <button class="buy-button" onclick="buyItem('Дед Мороз')">🎁 Купить сейчас</button>
-            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
+            <button class="buy-button" onclick="buyItem('заряженный')">⚡ Купить сейчас</button>
         </div>
 
-        <!-- Сет Электроник -->
+        <!-- Сет Супер Заряд -->
         <div class="item-card">
             <div class="item-header">
-                <div class="item-name">⚡ Сет "Электроник"</div>
-                <div class="item-price">199 ₽</div>
+                <img src="https://i.postimg.cc/VkFYMC4q/v2.png" alt="Супер Заряд сет" class="item-image">
+                <div class="item-info">
+                    <div class="item-name">💥 Сет Супер Заряд</div>
+                    <div class="item-price">
+                        <span class="price-tag">800 тнг</span>
+                        <span class="price-tag stars">100 ⭐</span>
+                        <span class="price-tag">120 руб</span>
+                    </div>
+                </div>
             </div>
-            <div class="item-description">Мощный технологический сет для продвинутых игроков</div>
             <div class="item-content">
-                <div class="content-item">3 Красных камня</div>
-                <div class="content-item">64 Факела</div>
-                <div class="content-item">Электронный меч</div>
-                <div class="content-item">Киборг-броня</div>
-                <div class="content-item">16 Заряженных зелий</div>
+                <div class="content-title">Сет содержит:</div>
+                <div class="content-items">
+                    <div class="content-item">Сет Властелина/безшиповка</div>
+                    <div class="content-item">Сфера Виверны</div>
+                    <div class="content-item">Меч Властелина</div>
+                    <div class="content-item">2 стака золотой моркови</div>
+                    <div class="content-item">64 золотых яблок</div>
+                    <div class="content-item">24 чарки</div>
+                    <div class="content-item">16 перок</div>
+                    <div class="content-item">8 стаков опыта</div>
+                    <div class="content-item">10 тотемов</div>
+                    <div class="content-item">3 божьей помощи</div>
+                    <div class="content-item">2 зелья черепашки</div>
+                    <div class="content-item">1 сила 3</div>
+                    <div class="content-item">16 пластов</div>
+                    <div class="content-item">64 хоруса</div>
+                </div>
             </div>
-            <button class="buy-button" onclick="buyItem('Электроник')">⚡ Купить сейчас</button>
-            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
-        </div>
-
-        <!-- Сет Воин -->
-        <div class="item-card">
-            <div class="item-header">
-                <div class="item-name">⚔️ Сет "Воин"</div>
-                <div class="item-price">149 ₽ <span class="discount-badge">-20%</span></div>
-            </div>
-            <div class="item-description">Боевой сет для настоящих воинов сервера</div>
-            <div class="item-content">
-                <div class="content-item">Алмазный меч</div>
-                <div class="content-item">Железная броня</div>
-                <div class="content-item">32 стрелы</div>
-                <div class="content-item">3 зелья лечения</div>
-                <div class="content-item">Щит воина</div>
-            </div>
-            <button class="buy-button" onclick="buyItem('Воин')">⚔️ Купить сейчас</button>
-            <a href="https://t.me/lumesupport" class="telegram-button">📞 Написать в поддержку</a>
+            <button class="buy-button" onclick="buyItem('супер-заряд')">💥 Купить сейчас</button>
         </div>
 
         <div class="footer">
-            © 2024 LumeXShop • Nevertime Server<br>
-            Поддержка: @lumesupport
+            © 2025 LumeXShop • NeverTime Shop<br>
+            Поддержка: @gachomac
         </div>
     </div>
 
     <script>
         function buyItem(itemName) {
-            // Открываем Telegram для связи с поддержкой
-            window.open('https://t.me/lumesupport?text=Хочу купить сет ' + encodeURIComponent(itemName), '_blank');
+            let message = '';
+            if (itemName === 'супер-заряд') {
+                message = 'Здравствуйте! Я хочу купить сет Супер-Заряд';
+            } else {
+                message = 'Здравствуйте! Я хочу купить сет Заряженный';
+            }
+            
+            const telegramUrl = `https://t.me/gachomac?text=${encodeURIComponent(message)}`;
+            window.open(telegramUrl, '_blank');
         }
         
         // Плавное появление карточек
